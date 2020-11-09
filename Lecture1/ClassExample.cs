@@ -1,6 +1,6 @@
 ﻿namespace Lecture1
 {
-    public class MyClass
+    public class ClassExample
     {
         public int A { get; set; }
     }
