@@ -1,4 +1,4 @@
-﻿<Window x:Class="Lecture6.MainWindow"
+﻿<Window x:Class="Lecture6.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Вход в систему"
@@ -18,9 +18,9 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Content="Логин:"/>
             <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Пароль:"/>
-            <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="150"/>
-            <PasswordBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="150"/>
+            <TextBox Name="LoginText" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="150"/>
+            <PasswordBox Name="PasswordText" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="150"/>
         </Grid>
-        <Button HorizontalAlignment="Right" Margin="0,8,0,0" Padding="16,4,16,4" Content="Войти"/>
+        <Button Name="LoginButton" HorizontalAlignment="Right" Margin="0,8,0,0" Padding="16,4,16,4" Click="OnLoginClick" Content="Войти"/>
     </StackPanel>
 </Window>
