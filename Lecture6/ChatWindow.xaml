@@ -1,9 +1,42 @@
 ﻿<Window x:Class="Lecture6.ChatWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Чат" Width="600" Height="400" WindowStartupLocation="CenterOwner"
-        Loaded="OnLoaded">
-    <Grid>
-        
-    </Grid>
+        xmlns:converters="clr-namespace:Lecture6.Converters"
+        WindowStartupLocation="CenterOwner"
+        Loaded="OnLoaded" SizeToContent="WidthAndHeight" Closed="OnClosed">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        <converters:BooleanToVisibilityConverter IsInversed="True" IsHidden="True" x:Key="MyBoolToVisibility"/>
+    </Window.Resources>
+    <StackPanel>
+        <!-- Прямая привязка без конвертеров (типы совпадают) -->
+        <DockPanel Width="200" Margin="10">
+            <CheckBox Name="MyCheckBox1" VerticalAlignment="Center" Content="Show" IsChecked="True"/>
+            <TextBox VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="{Binding IsChecked, ElementName=MyCheckBox1}"/>
+        </DockPanel>
+
+        <!-- Привязка через стандартный конвертер --> 
+        <DockPanel Width="200" Margin="10">
+            <CheckBox Name="MyCheckBox2" VerticalAlignment="Center" Content="Show" IsChecked="True"/>
+            <TextBox VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding IsChecked, ElementName=MyCheckBox2, Converter={StaticResource BoolToVisibility}}"/>
+        </DockPanel>
+
+        <!-- Привязка через свой конвертер -->
+        <DockPanel Width="200" Margin="10">
+            <CheckBox Name="MyCheckBox3" VerticalAlignment="Center" Content="Show" IsChecked="True"/>
+            <TextBox VerticalAlignment="Center" Margin="10,0,0,0" Visibility="{Binding IsChecked, ElementName=MyCheckBox3, Converter={StaticResource MyBoolToVisibility}}"/>
+        </DockPanel>
+
+        <!-- Шаблон данных -->
+        <ListBox Name="MyListBox" Height="100">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="MessageItem">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Padding="0" Content="{Binding Sender}" Foreground="Blue"/>
+                        <Label Padding="0" Content="{Binding Message}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
 </Window>
