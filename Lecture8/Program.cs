@@ -8,6 +8,7 @@ namespace Lecture8
     {
         static void Main()
         {
+            // TODO: https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets
             var connectionString = $"Datasource=localhost; Database=chat; User=root; Password=password";
             using var connection = new MySqlConnection(connectionString);
             connection.Open();
